@@ -66,7 +66,7 @@ const VIGORA: Project = {
 }
 const PROJECTS: Project[] = [PULSE, VIGORA, HORARIO, DENTISTA]
 // Se preencher birth: 'AAAA-MM-DD', a idade passa a ser calculada sozinha e atualiza a cada aniversário.
-const PROFILE = { name: 'Gustavo Martins Santos', role: 'Full Stack Engineer', photo: '/gustavo-foco.jpg', age: 25 }
+const PROFILE = { name: 'Gustavo Martins dos Santos', role: 'Full Stack Engineer', photo: '/gustavo-foco.jpg', birth: '2001-03-04' }
 const HISTORY = [
   { title: '2025 — Ago/2025', text: 'Estágio Full Stack · Concluído — Startup de Tecnologia · Hub Salvador' },
   { title: '2024 — Concluído', text: 'Graduação ADS + LAES — UCsal · Liga Acadêmica de Eng. de Software' },
