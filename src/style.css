@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html { scroll-behavior: smooth; background: #000; color: #fff; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: #000; overflow-x: clip; }
+
+@keyframes drift { 0% { transform: translate3d(-10%, 0, 0) rotate(0); } 50% { transform: translate3d(10%, 6%, 0) rotate(8deg); } 100% { transform: translate3d(-10%, 0, 0) rotate(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.drift { animation: drift 18s ease-in-out infinite; }
+.spin-slow { animation: spin 4s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .drift, .spin-slow { animation: none; } }
+
+@keyframes info-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.info-in { animation: info-in .45s ease both; }
+@media (prefers-reduced-motion: reduce) { .info-in { animation: none; } }
