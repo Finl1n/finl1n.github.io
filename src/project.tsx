@@ -1,4 +1,4 @@
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { Reveal, type Project } from './ui'
 
 const STEP_TITLES = ['Descoberta', 'Design', 'Código', 'Entrega']
@@ -41,6 +41,7 @@ export function ProjectPage({ project, next, nextHref, email }: { project?: Proj
           <p className="text-sm leading-relaxed text-white/70 md:text-base">{project.intro}</p>
           <dl className="flex flex-col gap-4 text-xs md:text-sm">
             {meta.map(([k, v]) => <div key={k}><dt className="font-bold">{k}:</dt><dd className="text-white/70">{v}</dd></div>)}
+            {project.link && <div><a href={project.link} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 border-b border-white/40 pb-1 font-bold transition hover:border-white">Testar o agente ao vivo<ArrowUpRight size={16} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a></div>}
           </dl>
         </Reveal>
 

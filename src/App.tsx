@@ -64,10 +64,28 @@ const VIGORA: Project = {
     'Checkout com validação de verdade: CPF, CEP, cartão (algoritmo de Luhn) e validade. Depois do pedido há página de confirmação com Pix e acompanhamento.',
   ],
 }
-const PROJECTS: Project[] = [PULSE, VIGORA, HORARIO, DENTISTA]
+const ORBIT: Project = {
+  title: 'Orbit', tag: 'Agente autônomo', headline: 'Um agente que mostra o que pensa antes de agir.',
+  desc: 'Agente autônomo que planeja, usa ferramentas sobre os dados da loja, decide o próximo passo e propõe ações com aprovação humana.',
+  intro: 'Em vez de só responder perguntas, o Orbit recebe um objetivo, monta um plano, consulta os dados, muda de rota conforme o que encontra e entrega um relatório com ações para você aprovar.',
+  stack: 'React, TypeScript, Tailwind, agente baseado em ferramentas', link: '/orbit/',
+  full: '/projetos/orbit/full.png', img: '/projetos/orbit/full.png',
+  desktop: ['/projetos/orbit/desktop-2.png', '/projetos/orbit/desktop-3.png'],
+  mobile: ['/projetos/orbit/mobile-1.png', '/projetos/orbit/mobile-2.png', '/projetos/orbit/mobile-3.png'],
+  mobileNote: 'Missões, raciocínio e relatório empilham em uma coluna, e as ações continuam a um toque de distância.',
+  highlight: { title: 'Autonomia com trava de segurança.', text: 'O mais interessante foi o equilíbrio entre deixar o agente agir sozinho e manter o controle: o nível de autonomia define o que ele executa sem pedir, e ações de risco alto sempre esperam aprovação. Em um dos testes, ele mesmo concluiu que as alavancas cobriam só 12% da diferença até a meta e recomendou ajustar a meta, em vez de prometer o que não entregaria.' },
+  steps: [
+    'Partir de uma pergunta: o que um agente precisa para ser confiável? A resposta virou três regras: mostrar o raciocínio, usar ferramentas que calculam de verdade e pedir aprovação quando há risco.',
+    'Interface escura em três colunas: missões, linha do tempo do raciocínio e relatório com ações. Plano, ferramenta, observação e decisão têm cada um o seu visual, para dar para acompanhar o agente pensando.',
+    'Nove ferramentas puras sobre os dados da loja (comparar períodos, decompor variação, risco de estoque, funil, previsão) e cinco missões que decidem o próximo passo a partir do que observam. O planejador é por regras e foi separado das ferramentas, para poder ser trocado por um modelo de linguagem.',
+    'Três níveis de autonomia (manual, assistido e autônomo) e uma trava: ação de risco alto nunca roda sem aprovação humana. Tudo que é executado fica em um registro. O projeto roda inteiro no navegador, sem servidor.',
+  ],
+}
+const PROJECTS: Project[] = [PULSE, VIGORA, ORBIT, HORARIO, DENTISTA]
 // Se preencher birth: 'AAAA-MM-DD', a idade passa a ser calculada sozinha e atualiza a cada aniversário.
 const PROFILE = { name: 'Gustavo Martins dos Santos', role: 'Full Stack Engineer', photo: '/gustavo-foco.jpg', birth: '2001-03-04' }
 const HISTORY = [
+  { title: 'Atual', text: 'Analista de Dados / Sistemas — Grupo Gotemburgo' },
   { title: '2025 — Ago/2025', text: 'Estágio Full Stack · Concluído — Startup de Tecnologia · Hub Salvador' },
   { title: '2024 — Concluído', text: 'Graduação ADS + LAES — UCsal · Liga Acadêmica de Eng. de Software' },
   { title: '2023 — presente', text: 'Full Stack Freelancer — React · Node.js · TypeScript · MySQL' },
