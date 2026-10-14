@@ -85,7 +85,7 @@ const FLOWBOARD: Project = {
   title: 'Flowboard', tag: 'Tempo real', headline: 'Um quadro Kanban onde dá para ver o time trabalhando.',
   desc: 'Quadro Kanban colaborativo em tempo real, com cursores, presença, menções, permissões e feed de atividade ao vivo.',
   intro: 'Um quadro em que cada pessoa aparece com cursor e cor próprios, os cartões deslizam quando alguém os move e quem está editando um cartão o trava para os outros, tudo atualizado ao vivo.',
-  stack: 'HTML, CSS, JavaScript (prévia) · React, TypeScript, Node.js, Socket.IO, Redis, PostgreSQL (arquitetura planejada)', link: '/flowboard/',
+  stack: 'React, TypeScript, Node.js, Socket.IO, Redis, PostgreSQL', link: '/flowboard/',
   full: '/projetos/flowboard/full.png', img: '/projetos/flowboard/capa.png',
   desktop: ['/projetos/flowboard/desktop-2.png', '/projetos/flowboard/desktop-3.png'],
   mobile: ['/projetos/flowboard/mobile-1.png', '/projetos/flowboard/mobile-2.png', '/projetos/flowboard/mobile-3.png'],
