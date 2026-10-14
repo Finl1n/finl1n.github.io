@@ -86,7 +86,7 @@ const FLOWBOARD: Project = {
   desc: 'Quadro Kanban colaborativo em tempo real, com cursores, presença, menções, permissões e feed de atividade ao vivo.',
   intro: 'Um quadro em que cada pessoa aparece com cursor e cor próprios, os cartões deslizam quando alguém os move e quem está editando um cartão o trava para os outros, tudo atualizado ao vivo.',
   stack: 'HTML, CSS, JavaScript (prévia) · React, TypeScript, Node.js, Socket.IO, Redis, PostgreSQL (arquitetura planejada)', link: '/flowboard/',
-  full: '/projetos/flowboard/full.png', img: '/projetos/flowboard/full.png',
+  full: '/projetos/flowboard/full.png', img: '/projetos/flowboard/capa.png',
   desktop: ['/projetos/flowboard/desktop-2.png', '/projetos/flowboard/desktop-3.png'],
   mobile: ['/projetos/flowboard/mobile-1.png', '/projetos/flowboard/mobile-2.png', '/projetos/flowboard/mobile-3.png'],
   mobileNote: 'As colunas viram páginas com rolagem lateral, o detalhe do cartão ocupa a tela e a atividade abre em uma gaveta.',
