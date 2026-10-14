@@ -385,7 +385,7 @@ body.dragging,body.dragging *{cursor:grabbing!important}
 
   <main class="main">
     <div class="topbar pad">
-      <div class="crumbs"><span class="hide-sm">Produto</span><svg class="hide-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg><b>Clinio Mobile</b></div>
+      <div class="crumbs"><span class="hide-sm">Produto</span><svg class="hide-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg><b>Pulse 2.0</b></div>
       <div class="top-right">
         <span class="live" id="live" title="Sincronização em tempo real"><span class="pulse"></span><span class="txt" id="liveTxt">Ao vivo</span><span class="num" id="latency">· 38 ms</span></span>
         <div class="presence" id="presence"></div>
@@ -397,7 +397,7 @@ body.dragging,body.dragging *{cursor:grabbing!important}
 
     <div class="headrow pad">
       <div>
-        <h1>Clinio Mobile</h1>
+        <h1>Pulse 2.0</h1>
         <div class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> <span id="sprintTxt"></span></span><span>·</span><span id="memberCount"></span></div>
       </div>
       <div class="progress">
@@ -525,19 +525,19 @@ const state = {
   ],
   cards:[
     {id:'c1', col:'backlog', title:'Acessibilidade: contraste, foco e leitor de tela', labels:['front','design'], due:null, who:['jm'], desc:'Auditar as telas principais com o leitor de tela do iOS e do Android. Meta: nível AA do WCAG 2.2.', check:[{t:'Contraste dos textos secundários',d:false},{t:'Ordem de foco no agendamento',d:false},{t:'Rótulos dos ícones',d:false}], comments:[]},
-    {id:'c2', col:'backlog', title:'Pesquisa com 8 pacientes sobre remarcação', labels:['pesquisa'], due:dayOff(9), who:['ar'], desc:'Entender por que 31% das remarcações acontecem por telefone e não pelo app.', check:[{t:'Roteiro de entrevista',d:true},{t:'Recrutar participantes',d:false},{t:'Síntese em mapa de afinidade',d:false}], comments:[{who:'ar', text:'Já tenho 5 pacientes confirmados para quinta.', at:M(190)}]},
+    {id:'c2', col:'backlog', title:'Entrevistas com 8 lojistas sobre o painel', labels:['pesquisa'], due:dayOff(9), who:['ar'], desc:'Entender por que 31% dos lojistas exportam CSV em vez de usar os gráficos.', check:[{t:'Roteiro de entrevista',d:true},{t:'Recrutar participantes',d:false},{t:'Síntese em mapa de afinidade',d:false}], comments:[{who:'ar', text:'Já tenho 5 lojistas confirmados para quinta.', at:M(190)}]},
     {id:'c3', col:'backlog', title:'Teste de carga: 200 usuários simultâneos no quadro', labels:['infra','back'], due:dayOff(12), who:['rc'], desc:'Cenário com k6: 200 conexões Socket.IO, 20 movimentos por segundo, medir latência p95 do broadcast.', check:[], comments:[]},
-    {id:'c4', col:'todo', title:'Histórico de consultas com paginação por cursor', labels:['front','back'], due:dayOff(8), who:['gm'], desc:'Lista infinita com cursor no back-end (created_at + id) para não pular registros.', check:[{t:'Endpoint GET /consultas?cursor=',d:false},{t:'Lista virtualizada',d:false}], comments:[]},
-    {id:'c5', col:'todo', title:'Estados vazios e de erro do app', labels:['design'], due:dayOff(6), who:['ar','jm'], desc:'', check:[{t:'Sem consultas',d:true},{t:'Sem internet',d:false},{t:'Erro no pagamento',d:false}], comments:[]},
+    {id:'c4', col:'todo', title:'Histórico de pedidos com paginação por cursor', labels:['front','back'], due:dayOff(8), who:['gm'], desc:'Lista infinita com cursor no back-end (created_at + id) para não pular registros.', check:[{t:'Endpoint GET /pedidos?cursor=',d:false},{t:'Lista virtualizada',d:false}], comments:[]},
+    {id:'c5', col:'todo', title:'Estados vazios e de erro do painel', labels:['design'], due:dayOff(6), who:['ar','jm'], desc:'', check:[{t:'Sem pedidos',d:true},{t:'Sem internet',d:false},{t:'Erro na exportação',d:false}], comments:[]},
     {id:'c6', col:'todo', title:'Pipeline de deploy com Docker e GitHub Actions', labels:['infra'], due:dayOff(5), who:['gm','rc'], desc:'Imagem multi-stage, migrações no start e deploy só com testes verdes.', check:[{t:'Dockerfile multi-stage',d:true},{t:'Workflow de testes',d:true},{t:'Deploy automático',d:false}], comments:[{who:'rc', text:'Coloquei cache das dependências no workflow, caiu de 4 para 1,5 min.', at:M(75)}]},
-    {id:'c7', col:'doing', title:'Fluxo de agendamento em 3 passos', labels:['design','front'], due:dayOff(2), who:['ar','gm'], desc:'Especialidade, horário e confirmação. O passo de horário mostra só os livres nos próximos 14 dias.', check:[{t:'Wireframes',d:true},{t:'Protótipo no Figma',d:true},{t:'Validação com 3 pacientes',d:false},{t:'Componentes no código',d:false},{t:'Animação entre passos',d:false}], comments:[{who:'ar', text:'Subi a versão 3 do protótipo. O passo 2 ficou mais curto.', at:M(140)},{who:'gm', text:'Ficou ótimo. Vou começar os componentes hoje.', at:M(120)}]},
-    {id:'c8', col:'doing', title:'Lembrete de consulta por notificação push', labels:['back'], due:dayOff(4), who:['rc'], desc:'Envio 24 h e 2 h antes. Fila com reprocessamento quando o provedor falhar.', check:[{t:'Fila de envios',d:true},{t:'Template das mensagens',d:false}], comments:[]},
-    {id:'c9', col:'doing', title:'Tela de login com biometria', labels:['front'], due:dayOff(-1), who:['jm'], desc:'Face ID e impressão digital, com senha como alternativa.', check:[{t:'Fluxo feliz',d:true},{t:'Fallback para senha',d:true},{t:'Bloqueio após 5 tentativas',d:false}], comments:[{who:'jm', text:'Falta só o bloqueio. Termino amanhã cedo.', at:M(400)}]},
-    {id:'c10', col:'review', title:'Corrigir fuso horário nos horários livres', labels:['bug','back'], due:dayOff(0), who:['rc'], desc:'Clínicas do Acre viam horários com 2 h de diferença. Agora tudo é salvo em UTC e convertido no cliente.', check:[{t:'Teste com fuso America/Rio_Branco',d:true}], comments:[{who:'rc', text:'@Gustavo pode revisar o PR? Mudei a coluna para timestamptz.', at:M(35)}]},
-    {id:'c11', col:'review', title:'Endpoint de confirmação com idempotência', labels:['back'], due:dayOff(3), who:['gm'], desc:'Chave de idempotência no cabeçalho para o botão Confirmar não criar dois agendamentos.', check:[{t:'Tabela idempotency_keys',d:true},{t:'Testes de concorrência',d:true}], comments:[]},
-    {id:'c12', col:'done', title:'Modelo de dados das remarcações', labels:['back'], due:dayOff(-3), who:['rc'], desc:'', check:[{t:'Migração',d:true},{t:'Seeds',d:true}], comments:[]},
+    {id:'c7', col:'doing', title:'Novo fluxo de metas em 3 passos', labels:['design','front'], due:dayOff(2), who:['ar','gm'], desc:'Período, valor e canais. O passo de valor sugere a meta a partir dos últimos 90 dias.', check:[{t:'Wireframes',d:true},{t:'Protótipo no Figma',d:true},{t:'Validação com 3 lojistas',d:false},{t:'Componentes no código',d:false},{t:'Animação entre passos',d:false}], comments:[{who:'ar', text:'Subi a versão 3 do protótipo. O passo 2 ficou mais curto.', at:M(140)},{who:'gm', text:'Ficou ótimo. Vou começar os componentes hoje.', at:M(120)}]},
+    {id:'c8', col:'doing', title:'Alerta de estoque baixo por e-mail', labels:['back'], due:dayOff(4), who:['rc'], desc:'Envio diário às 8 h com os produtos abaixo do mínimo. Fila com reprocessamento quando o provedor falhar.', check:[{t:'Fila de envios',d:true},{t:'Template das mensagens',d:false}], comments:[]},
+    {id:'c9', col:'doing', title:'Login com Google e verificação em duas etapas', labels:['front'], due:dayOff(-1), who:['jm'], desc:'Entrada com Google ou e-mail, e código do app autenticador para contas de administrador.', check:[{t:'Fluxo feliz',d:true},{t:'Código do app autenticador',d:true},{t:'Bloqueio após 5 tentativas',d:false}], comments:[{who:'jm', text:'Falta só o bloqueio. Termino amanhã cedo.', at:M(400)}]},
+    {id:'c10', col:'review', title:'Corrigir fuso horário no mapa de calor de vendas', labels:['bug','back'], due:dayOff(0), who:['rc'], desc:'Lojas do Acre viam os picos de venda com 2 h de diferença. Agora tudo é salvo em UTC e convertido no cliente.', check:[{t:'Teste com fuso America/Rio_Branco',d:true}], comments:[{who:'rc', text:'@Gustavo pode revisar o PR? Mudei a coluna para timestamptz.', at:M(35)}]},
+    {id:'c11', col:'review', title:'Endpoint de pedidos com idempotência', labels:['back'], due:dayOff(3), who:['gm'], desc:'Chave de idempotência no cabeçalho para o botão Finalizar não criar dois pedidos.', check:[{t:'Tabela idempotency_keys',d:true},{t:'Testes de concorrência',d:true}], comments:[]},
+    {id:'c12', col:'done', title:'Modelo de dados das coortes de retenção', labels:['back'], due:dayOff(-3), who:['rc'], desc:'', check:[{t:'Migração',d:true},{t:'Seeds',d:true}], comments:[]},
     {id:'c13', col:'done', title:'Ícones e ilustrações do onboarding', labels:['design'], due:dayOff(-2), who:['ar'], desc:'', check:[], comments:[{who:'jm', text:'Já estão no app, ficaram leves (12 kB no total).', at:M(1500)}]},
-    {id:'c14', col:'done', title:'Componente de cartão do profissional', labels:['design','front'], due:dayOff(-1), who:['jm'], desc:'', check:[{t:'Variante compacta',d:true}], comments:[]}
+    {id:'c14', col:'done', title:'Componente de cartão de KPI', labels:['design','front'], due:dayOff(-1), who:['jm'], desc:'', check:[{t:'Variante compacta',d:true}], comments:[]}
   ],
   activity:[
     {who:'rc', kind:'comment', card:'c10', text:'@Gustavo pode revisar o PR? Mudei a coluna para timestamptz.', at:M(35), mine:true},
@@ -1295,14 +1295,14 @@ const waitIdle = async () => { while (busy() || state.paused) await sleep(250); 
 function visibleCards(filter){ return state.cards.filter(c => !holds.has(c.id) && matches(c) && cardEl(c.id) && (!filter || filter(c))); }
 
 const COMMENTS = {
-  ar:['Atualizei o protótipo no Figma, dá uma olhada quando puder.','@Gustavo o espaçamento do passo 2 ficou bom no Android?','Testei com 3 pacientes, todos acharam o botão Confirmar.','Deixei as variações de cor no arquivo de componentes.'],
-  rc:['Subi o PR, os testes de integração passaram.','@Gustavo consegue revisar ainda hoje?','Coloquei um índice em (clinic_id, starts_at), a consulta caiu para 12 ms.','A fila reprocessa 3 vezes antes de marcar como falha.'],
+  ar:['Atualizei o protótipo no Figma, dá uma olhada quando puder.','@Gustavo o espaçamento do passo 2 ficou bom no Android?','Testei com 3 lojistas, todos acharam o botão Salvar meta.','Deixei as variações de cor no arquivo de componentes.'],
+  rc:['Subi o PR, os testes de integração passaram.','@Gustavo consegue revisar ainda hoje?','Coloquei um índice em (store_id, created_at), a consulta caiu para 12 ms.','A fila reprocessa 3 vezes antes de marcar como falha.'],
   jm:['Ficou pronto no Storybook.','@Gustavo posso pegar a parte de animação?','Ajustei o foco do teclado, agora segue a ordem visual.','Testei no iPhone SE e nada quebrou.']
 };
 const NEW_CARDS = {
-  ar:[['Revisar textos do onboarding',['design']],['Mapa da jornada de remarcação',['pesquisa','design']]],
+  ar:[['Revisar textos do onboarding',['design']],['Mapa da jornada de reposição de estoque',['pesquisa','design']]],
   rc:[['Rate limit no endpoint de login',['back','infra']],['Logs estruturados com request id',['infra']]],
-  jm:[['Skeleton loading na lista de consultas',['front']],['Bug: teclado cobre o campo de CPF',['bug','front']]]
+  jm:[['Skeleton loading na lista de pedidos',['front']],['Bug: teclado cobre o campo de busca no celular',['bug','front']]]
 };
 const COL_STATUS = id => `vendo ${colOf(id)?.name || 'o quadro'}`;
 
