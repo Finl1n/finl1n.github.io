@@ -81,7 +81,24 @@ const ORBIT: Project = {
     'Três níveis de autonomia (manual, assistido e autônomo) e uma trava: ação de risco alto nunca roda sem aprovação humana. Tudo que é executado fica em um registro. O projeto roda inteiro no navegador, sem servidor.',
   ],
 }
-const PROJECTS: Project[] = [PULSE, VIGORA, ORBIT, HORARIO, DENTISTA]
+const FLOWBOARD: Project = {
+  title: 'Flowboard', tag: 'Tempo real', headline: 'Um quadro onde o time inteiro trabalha ao mesmo tempo.',
+  desc: 'Kanban colaborativo em tempo real: cursores e presença ao vivo, travas por cartão, comentários com menções, papéis e histórico de atividade.',
+  intro: 'Várias pessoas movem, comentam e editam cartões no mesmo quadro. Cada uma tem um cursor e uma cor, o cartão que alguém está usando fica travado para os outros e tudo vira uma linha no feed de atividade.',
+  stack: 'JavaScript, Pointer Events · arquitetura com Node.js, Socket.IO, Redis e PostgreSQL', link: '/flowboard/', linkLabel: 'Abrir o quadro ao vivo',
+  full: '/projetos/flowboard/full.png', img: '/projetos/flowboard/full.png',
+  desktop: ['/projetos/flowboard/desktop-2.png', '/projetos/flowboard/desktop-3.png'],
+  mobile: ['/projetos/flowboard/mobile-1.png', '/projetos/flowboard/mobile-2.png', '/projetos/flowboard/mobile-3.png'],
+  mobileNote: 'Colunas viram páginas com rolagem lateral, o cartão arrasta com um toque longo e a atividade abre em gaveta.',
+  highlight: { title: 'Dois usuários, o mesmo cartão, nenhum conflito.', text: 'O mais interessante foi pensar no que acontece quando duas pessoas mexem no mesmo cartão. Quem pega primeiro ganha uma trava curta, os outros veem o nome e a cor de quem está mexendo e não conseguem arrastar até ela soltar. Na versão de produção essa trava vive no Redis e cada mudança carrega a versão do quadro, para o servidor recusar o que chegou atrasado.' },
+  steps: [
+    'Partir do que falta num quadro comum quando o time trabalha junto: saber quem está online, o que cada um está fazendo e o que mudou desde a última vez. Isso virou presença, cursores, travas e o feed de atividade.',
+    'Mesma linguagem visual do Strata: tema escuro, azul como cor ativa, coral para prazo e risco, cartões grandes. Cada pessoa tem uma cor que aparece no cursor, na trava do cartão e no avatar.',
+    'Arrastar e soltar próprio com eventos de ponteiro (mouse, caneta e toque), animação FLIP quando qualquer pessoa move um cartão, colunas editáveis com limite de cartões, filtros, checklist, comentários com @menções e papéis de dono, editor e leitor.',
+    'A demonstração roda sem servidor, com três colegas simulados no navegador. A arquitetura de produção está documentada: salas por quadro no Socket.IO, adaptador e presença no Redis, ordem por índice fracionário no PostgreSQL e testes com dois clientes movendo o mesmo cartão.',
+  ],
+}
+const PROJECTS: Project[] = [FLOWBOARD, PULSE, VIGORA, ORBIT, HORARIO, DENTISTA]
 // Se preencher birth: 'AAAA-MM-DD', a idade passa a ser calculada sozinha e atualiza a cada aniversário.
 const PROFILE = { name: 'Gustavo Martins dos Santos', role: 'Full Stack Engineer', photo: '/gustavo-foco.jpg', birth: '2001-03-04' }
 const HISTORY = [
