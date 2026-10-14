@@ -40,7 +40,6 @@ export function Aurora({ children }: { children: ReactNode }) {
 export type Project = {
   title: string; tag: string; desc: string; img?: string
   intro?: string; stack?: string; link?: string; steps?: string[]
-  linkLabel?: string // texto do link para a versão ao vivo
   full?: string // print da página inteira, mostrado na página do projeto
   mobileNote?: string
   headline?: string // frase de abertura da página do projeto
