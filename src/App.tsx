@@ -81,7 +81,24 @@ const ORBIT: Project = {
     'Três níveis de autonomia (manual, assistido e autônomo) e uma trava: ação de risco alto nunca roda sem aprovação humana. Tudo que é executado fica em um registro. O projeto roda inteiro no navegador, sem servidor.',
   ],
 }
-const PROJECTS: Project[] = [PULSE, VIGORA, ORBIT, HORARIO, DENTISTA]
+const FLOWBOARD: Project = {
+  title: 'Flowboard', tag: 'Tempo real', headline: 'Um quadro Kanban onde dá para ver o time trabalhando.',
+  desc: 'Quadro Kanban colaborativo em tempo real, com cursores, presença, menções, permissões e feed de atividade ao vivo.',
+  intro: 'Um quadro em que cada pessoa aparece com cursor e cor próprios, os cartões deslizam quando alguém os move e quem está editando um cartão o trava para os outros, tudo atualizado ao vivo.',
+  stack: 'HTML, CSS, JavaScript (prévia) · React, TypeScript, Node.js, Socket.IO, Redis, PostgreSQL (arquitetura planejada)', link: '/flowboard/',
+  full: '/projetos/flowboard/full.png', img: '/projetos/flowboard/full.png',
+  desktop: ['/projetos/flowboard/desktop-2.png', '/projetos/flowboard/desktop-3.png'],
+  mobile: ['/projetos/flowboard/mobile-1.png', '/projetos/flowboard/mobile-2.png', '/projetos/flowboard/mobile-3.png'],
+  mobileNote: 'As colunas viram páginas com rolagem lateral, o detalhe do cartão ocupa a tela e a atividade abre em uma gaveta.',
+  highlight: { title: 'Colaboração que dá para sentir.', text: 'O mais interessante foi simular o servidor no navegador: três colegas fictícios movem cartões, comentam e marcam checklists com cursores coloridos. Se você tentar arrastar o cartão que alguém está usando, o quadro avisa e não deixa, o mesmo comportamento da trava curta que a versão real faria no Redis.' },
+  steps: [
+    'Partir de uma pergunta: como mostrar que o quadro está vivo? Cursores, avatares online, etiquetas como "Ana movendo" e um feed de atividade responderam isso antes de qualquer tela de configuração.',
+    'Mesmo visual escuro do Strata Analytics, com azul como cor ativa e coral para prazo e risco. Cada colaborador tem uma cor própria, que aparece no cartão em uso, no cursor e no feed.',
+    'Arrastar e soltar com mouse, caneta e toque, colunas editáveis com limite de cartões, filtros por etiqueta, pessoa e prazo, e painel lateral com checklist e comentários com menção por @. Tudo em um único arquivo, sem instalar nada.',
+    'A arquitetura da versão publicável está desenhada: React com dnd-kit, Node com Socket.IO, Redis para presença e travas, PostgreSQL com ordem fracionária dos cartões, versão por mudança para resolver conflitos e permissões validadas no handshake.',
+  ],
+}
+const PROJECTS: Project[] = [FLOWBOARD, PULSE, VIGORA, ORBIT, HORARIO, DENTISTA]
 // Se preencher birth: 'AAAA-MM-DD', a idade passa a ser calculada sozinha e atualiza a cada aniversário.
 const PROFILE = { name: 'Gustavo Martins dos Santos', role: 'Full Stack Engineer', photo: '/gustavo-foco.jpg', birth: '2001-03-04' }
 const HISTORY = [
