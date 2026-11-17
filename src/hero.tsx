@@ -39,7 +39,7 @@ function Screen({ pr, i, local, portrait }: { pr: Project; i: number; local: Mot
       )}
       <motion.div style={{ opacity: textOpacity, x: textX, ...THIN }} className="pointer-events-none flex flex-col items-center gap-2 text-center">
         <span className="font-mono text-[10px] tracking-[0.3em] text-white/40">{String(i + 1).padStart(2, '0')} · {pr.tag.toUpperCase()}</span>
-        <span className="text-3xl font-extralight uppercase tracking-[0.18em] md:text-4xl">{pr.title}</span>
+        <span className="text-3xl font-light uppercase tracking-[0.18em] text-white md:text-4xl">{pr.title}</span>
       </motion.div>
     </motion.a>
   )
@@ -67,7 +67,7 @@ export function ScrollHero({ projects }: { projects: Project[] }) {
   const progressW = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
   return (
-    <section ref={ref} id="work" style={{ height: `${steps * 100 + 100}vh` }} className="relative">
+    <section ref={ref} id="work" style={{ height: `${steps * 100 + 100}vh` }} className="relative text-white">
       <span id="inicio" className="absolute top-0" aria-hidden />
       <div className="sticky top-0 h-screen overflow-hidden [perspective:1400px]">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,#0d0f1a_0%,#000_70%)]" aria-hidden />
@@ -75,7 +75,7 @@ export function ScrollHero({ projects }: { projects: Project[] }) {
 
         <motion.div style={{ opacity: nameOpacity, y: nameY, ...THIN }} className="absolute inset-0 grid place-items-center px-6 text-center">
           <div>
-            <h1 className="text-[clamp(2.4rem,9vw,8rem)] font-thin uppercase leading-[0.95] tracking-[0.12em]">Gustavo<br />Martins</h1>
+            <h1 className="text-[clamp(2.4rem,9vw,8rem)] font-extralight uppercase leading-[0.95] tracking-[0.12em] text-white">Gustavo<br />Martins</h1>
             <p className="mt-6 text-xs font-extralight uppercase tracking-[0.5em] text-white/60 md:text-sm">Desenvolvedor Full Stack</p>
           </div>
         </motion.div>
