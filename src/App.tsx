@@ -1,6 +1,6 @@
 ﻿import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { About, Aurora, Contact, EncryptedText, Home, Rail, Stack, Timeline, type Project } from './ui'
+import { About, Aurora, Contact, EncryptedText, Rail, Stack, Timeline, type Project } from './ui'
 import { ProjectPage } from './project'
 import { LooseMenu, ScrollHero } from './hero'
 
@@ -182,7 +182,8 @@ export default function App() {
         let idx = 0
         try { idx = Number(sessionStorage.getItem('work-index') ?? 0) } catch { /* ignora */ }
         const n = PROJECTS.length
-        const top = el.offsetTop + Math.min(idx, n - 1) * window.innerHeight
+        // No hero, o projeto i fica no centro depois de (i + 1) telas de rolagem.
+        const top = el.offsetTop + (Math.min(idx, n - 1) + 1) * window.innerHeight
         behavior === 'smooth' ? smoothTo(top) : window.scrollTo({ top, behavior: 'instant' })
       } else if (behavior === 'smooth') smoothTo(el.getBoundingClientRect().top + window.scrollY)
       else el.scrollIntoView({ behavior: 'instant' })
@@ -210,7 +211,6 @@ export default function App() {
             <main>
         <ScrollHero projects={PROJECTS} />
         <Aurora>
-          <Home projects={PROJECTS} />
           <About lead={ABOUT_LEAD} text={ABOUT} profile={PROFILE} />
           <Stack data={STACK} />
           <Timeline data={HISTORY} />
