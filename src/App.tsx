@@ -1,7 +1,10 @@
 ﻿import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { About, Aurora, Contact, EncryptedText, Home, Rail, Stack, StickyNav, Timeline, type Project } from './ui'
+import { About, Aurora, Contact, EncryptedText, Rail, Stack, Timeline, type Project } from './ui'
 import { ProjectPage } from './project'
+import { LooseMenu, ScrollHero } from './hero'
+
+const MENU: [string, string][] = [['Projetos', 'work'], ['Sobre', 'about'], ['Experiência', 'experience'], ['Contato', 'contact']]
 
 const EMAIL = 'gustavomartinssantos045@gmail.com'
 const PULSE: Project = {
@@ -179,7 +182,8 @@ export default function App() {
         let idx = 0
         try { idx = Number(sessionStorage.getItem('work-index') ?? 0) } catch { /* ignora */ }
         const n = PROJECTS.length
-        const top = el.offsetTop + Math.min(idx, n - 1) * window.innerHeight
+        // No hero, o projeto i fica no centro depois de (i + 1) telas de rolagem.
+        const top = el.offsetTop + (Math.min(idx, n - 1) + 1) * window.innerHeight
         behavior === 'smooth' ? smoothTo(top) : window.scrollTo({ top, behavior: 'instant' })
       } else if (behavior === 'smooth') smoothTo(el.getBoundingClientRect().top + window.scrollY)
       else el.scrollIntoView({ behavior: 'instant' })
@@ -200,13 +204,13 @@ export default function App() {
         )}
       </AnimatePresence>
       {!m && !intro && <Rail />}
-      {!m && !intro && <StickyNav />}
+      {!m && !intro && <LooseMenu links={MENU} />}
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={routeKey} initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -24 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
           {m ? <ProjectPage project={PROJECTS[+m[1]]} next={PROJECTS[nextIdx]} nextHref={`#/projeto/${nextIdx}`} email={EMAIL} /> : (
             <main>
+        <ScrollHero projects={PROJECTS} />
         <Aurora>
-          <Home projects={PROJECTS} />
           <About lead={ABOUT_LEAD} text={ABOUT} profile={PROFILE} />
           <Stack data={STACK} />
           <Timeline data={HISTORY} />
