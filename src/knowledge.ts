@@ -44,7 +44,7 @@ ${HISTORY.map((h) => `- ${h.title}: ${h.text}`).join('\n')}
 ${projects}
 
 ## Contatos
-${CONTACTS.map((c) => `- ${c.k}: ${c.v} (${c.href})`).join('\n')}
+${CONTACTS.map((c) => `- ${c.k}: ${c.href.startsWith('mailto:') ? c.v : `${c.v} (${c.href})`}`).join('\n')}
 WhatsApp com mensagem pronta: ${WHATSAPP}?text=Ol%C3%A1%2C%20Gustavo!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar.`
 }
 

@@ -6,7 +6,8 @@ import { CONTACTS, WHATSAPP } from '../../src/data'
 import { buildSystemPrompt } from '../../src/knowledge'
 
 const BASE_URL = (process.env.LLM_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta/openai').replace(/\/$/, '')
-const MODEL = process.env.LLM_MODEL || 'gemini-2.5-flash'
+// Lista de modelos gratuitos, em ordem: se um estiver sobrecarregado ou sem cota, tenta o próximo.
+const MODELS = (process.env.LLM_MODEL || 'gemini-3.5-flash,gemini-3.5-flash-lite,gemini-flash-lite-latest').split(',').map((m) => m.trim()).filter(Boolean)
 const KEY = process.env.LLM_API_KEY
 const MAX_TURNS = 20 // mensagens por conversa
 const MAX_CHARS = 1500 // por mensagem do visitante
@@ -64,23 +65,28 @@ export default async (req: Request, context: Context) => {
   if (!messages) return text('Conversa inválida', cors, 400)
   if (!KEY) return text(FALLBACK, cors)
 
-  let upstream: Response
-  try {
-    upstream = await fetch(`${BASE_URL}/chat/completions`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${KEY}` },
-      body: JSON.stringify({ model: MODEL, stream: true, max_tokens: 700, temperature: 0.4, messages: [{ role: 'system', content: SYSTEM }, ...messages] }),
-      signal: AbortSignal.timeout(25_000),
-    })
-  } catch (err) {
-    console.error('Provedor de IA inacessível:', err)
-    return text(FALLBACK, cors)
+  let upstream: Response | null = null
+  for (const model of MODELS) {
+    // Espera até 9s pelo início da resposta; depois disso o streaming segue sem prazo.
+    const ctrl = new AbortController(), timer = setTimeout(() => ctrl.abort(), 9_000)
+    try {
+      const r = await fetch(`${BASE_URL}/chat/completions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${KEY}` },
+        body: JSON.stringify({ model, stream: true, max_tokens: 1500, temperature: 0.4, reasoning_effort: 'low', messages: [{ role: 'system', content: SYSTEM }, ...messages] }),
+        signal: ctrl.signal,
+      })
+      clearTimeout(timer)
+      if (r.ok && r.body) { upstream = r; break }
+      // 429 = cota gratuita esgotada, 503 = modelo sobrecarregado, 404 = modelo aposentado.
+      console.error(`Modelo ${model} falhou:`, r.status, (await r.text().catch(() => '')).slice(0, 200))
+    } catch (err) {
+      clearTimeout(timer)
+      console.error(`Modelo ${model} inacessível:`, err)
+    }
   }
-  if (!upstream.ok || !upstream.body) {
-    // 429 = cota gratuita esgotada. Em qualquer erro, o visitante recebe os contatos em vez de uma tela quebrada.
-    console.error('Erro do provedor de IA:', upstream.status, (await upstream.text().catch(() => '')).slice(0, 300))
-    return text(FALLBACK, cors)
-  }
+  // Nenhum modelo respondeu: o visitante recebe os contatos em vez de uma tela quebrada.
+  if (!upstream?.body) return text(FALLBACK, cors)
 
   // Converte o streaming (SSE no formato OpenAI) em texto puro para o navegador.
   const encoder = new TextEncoder(), decoder = new TextDecoder()
