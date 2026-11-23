@@ -33,4 +33,4 @@ Configuração no Netlify (Site configuration > Environment variables):
 - `LLM_BASE_URL` (opcional): qualquer API compatível com OpenAI, ex.: `https://api.groq.com/openai/v1`
 - `ALLOWED_ORIGINS` (opcional, padrão `https://finl1n.github.io` e localhost; `*.netlify.app` é sempre aceito)
 
-Para ligar o chat no GitHub Pages, defina `VITE_CHAT_API_URL` com o endereço da função (ex.: `https://SEU-SITE.netlify.app/api/chat`) no build.
+Para ligar o chat no GitHub Pages, defina `VITE_CHAT_API_URL` com o endereço da função (hoje `https://folen-portfolio.netlify.app/api/chat`, em `.github/workflows/deploy.yml`).
