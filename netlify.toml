@@ -1,5 +1,5 @@
 # Netlify: hospeda a função do assistente de IA (netlify/functions/chat.mts) e uma prévia do site.
-# A chave fica em Site configuration > Environment variables > ANTHROPIC_API_KEY (nunca no código).
+# A chave gratuita do Gemini fica em Site configuration > Environment variables > LLM_API_KEY (nunca no código).
 [build]
   command = "npm run build"
   publish = "dist"

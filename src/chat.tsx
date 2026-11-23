@@ -7,8 +7,8 @@ import { SUGGESTIONS } from './knowledge'
 // Endereço da função do assistente. Sem ele (ex.: build do GitHub Pages sem a variável), o botão não aparece.
 const API: string = import.meta.env.VITE_CHAT_API_URL ?? (import.meta.env.DEV ? '/api/chat' : '')
 const KEY = 'chat-v1'
-const WA_MSG = `${WHATSAPP}?text=${encodeURIComponent('Olá, Gustavo! Conversei com o assistente do seu portfólio e gostaria de falar sobre um projeto.')}`
-const GREETING = 'Oi! Sou o assistente de IA do portfólio do Gustavo. Pode me perguntar sobre os projetos, a stack ou a experiência dele.'
+const WA_MSG = `${WHATSAPP}?text=${encodeURIComponent('Olá, Gustavo! Conversei com a Folen, a IA do seu portfólio e gostaria de falar sobre um projeto.')}`
+const GREETING = 'Oi! Sou a Folen, a IA do portfólio do Gustavo. Pode me perguntar sobre os projetos, a stack ou a experiência dele.'
 
 type Msg = { role: 'user' | 'assistant'; content: string }
 
@@ -78,7 +78,7 @@ export function ChatWidget() {
     <>
       <AnimatePresence>
         {!open && (
-          <motion.button key="fab" type="button" onClick={() => setOpen(true)} aria-label="Abrir o assistente de IA"
+          <motion.button key="fab" type="button" onClick={() => setOpen(true)} aria-label="Abrir a Folen, assistente de IA"
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 16 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="group fixed bottom-5 right-5 z-[45] flex items-center gap-3 border border-white/20 bg-black/80 py-3 pl-3.5 pr-4 text-white backdrop-blur-md transition hover:border-white md:bottom-8 md:right-8">
             <span className="relative grid h-7 w-7 place-items-center border border-white/25 transition group-hover:border-white">
@@ -86,7 +86,7 @@ export function ChatWidget() {
               <span className="absolute -right-1 -top-1 h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
             </span>
             <span className="text-left leading-tight">
-              <span className="block font-mono text-[9px] uppercase tracking-[0.25em] text-white/45">Assistente IA</span>
+              <span className="block font-mono text-[9px] uppercase tracking-[0.25em] text-white/45">Folen · IA</span>
               <span className="block text-[13px] font-light">Pergunte sobre meu trabalho</span>
             </span>
           </motion.button>
@@ -95,15 +95,15 @@ export function ChatWidget() {
 
       <AnimatePresence>
         {open && (
-          <motion.section key="panel" role="dialog" aria-label="Assistente de IA do portfólio"
+          <motion.section key="panel" role="dialog" aria-label="Folen, assistente de IA do portfólio"
             initial={{ opacity: 0, y: 24, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 24, scale: 0.98 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-x-3 bottom-3 top-16 z-[60] flex flex-col border border-white/15 bg-black/95 text-white shadow-[0_0_60px_rgba(255,255,255,0.06)] backdrop-blur-xl sm:inset-x-auto sm:right-6 sm:top-auto sm:h-[min(620px,calc(100dvh-3rem))] sm:w-[400px] md:bottom-8 md:right-8">
             <header className="flex items-center justify-between border-b border-white/10 px-5 py-4">
               <div className="flex items-center gap-3">
                 <span className="grid h-8 w-8 place-items-center border border-white/25"><Sparkles size={15} strokeWidth={1.25} /></span>
                 <div className="leading-tight">
-                  <p className="text-sm font-light tracking-wide">Assistente do Gustavo</p>
-                  <p className="flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-white/40"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />IA · online</p>
+                  <p className="text-sm font-light tracking-wide">Folen</p>
+                  <p className="flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-white/40"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />Assistente do Gustavo · online</p>
                 </div>
               </div>
               <button type="button" onClick={() => setOpen(false)} aria-label="Fechar" className="p-1 text-white/50 transition hover:text-white"><X size={20} strokeWidth={1.25} /></button>
