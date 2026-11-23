@@ -1,5 +1,7 @@
 ﻿import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { ArrowUpRight, Mail, Phone } from 'lucide-react'
+import { CONTACTS as CONTACT_LIST, type Project } from './data'
+export type { Project } from './data'
 import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
 
 const SPRING = { stiffness: 100, damping: 30 }
@@ -37,15 +39,6 @@ export function Aurora({ children }: { children: ReactNode }) {
   )
 }
 
-export type Project = {
-  title: string; tag: string; desc: string; img?: string
-  intro?: string; stack?: string; link?: string; steps?: string[]
-  full?: string // print da página inteira, mostrado na página do projeto
-  mobileNote?: string
-  headline?: string // frase de abertura da página do projeto
-  highlight?: { title: string; text: string } // o que foi mais marcante
-  desktop?: string[]; mobile?: string[]
-}
 
 export function Reveal({ children, className, id }: { children: ReactNode; className?: string; id?: string }) {
   return (
@@ -215,12 +208,13 @@ function PhoneBooth({ className }: { className?: string }) {
   )
 }
 
-const CONTACTS = [
-  { k: 'E-mail', v: 'gustavomartinssantos04@hotmail.com', href: 'mailto:gustavomartinssantos04@hotmail.com', icon: <Mail size={16} strokeWidth={1.25} /> },
-  { k: 'GitHub', v: 'github.com/Finl1n', href: 'https://github.com/Finl1n', icon: <span className="font-mono text-[11px]">GH</span> },
-  { k: 'LinkedIn', v: 'in/gustavomartins25', href: 'https://www.linkedin.com/in/gustavomartins25/', icon: <span className="font-mono text-[11px]">in</span> },
-  { k: 'WhatsApp / Telefone', v: '(71) 98307-1000', href: 'https://wa.me/5571983071000', icon: <Phone size={16} strokeWidth={1.25} /> },
-]
+const ICONS: Record<string, ReactNode> = {
+  'E-mail': <Mail size={16} strokeWidth={1.25} />,
+  GitHub: <span className="font-mono text-[11px]">GH</span>,
+  LinkedIn: <span className="font-mono text-[11px]">in</span>,
+  'WhatsApp / Telefone': <Phone size={16} strokeWidth={1.25} />,
+}
+const CONTACTS = CONTACT_LIST.map((c) => ({ ...c, icon: ICONS[c.k] }))
 
 export function Contact() {
   return (
