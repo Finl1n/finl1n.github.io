@@ -6,8 +6,9 @@ import { CONTACTS, WHATSAPP } from '../../src/data'
 import { buildSystemPrompt } from '../../src/knowledge'
 
 const BASE_URL = (process.env.LLM_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta/openai').replace(/\/$/, '')
-// Lista de modelos gratuitos, em ordem: se um estiver sobrecarregado ou sem cota, tenta o próximo.
-const MODELS = (process.env.LLM_MODEL || 'gemini-3.5-flash,gemini-3.5-flash-lite,gemini-flash-lite-latest').split(',').map((m) => m.trim()).filter(Boolean)
+// Modelos gratuitos, em ordem. O 3.5 Flash Lite vem primeiro porque tem a maior cota grátis (500 respostas/dia, 15/min);
+// os Flash (20/dia) ficam de reserva se ele estiver sobrecarregado ou sem cota.
+const MODELS = (process.env.LLM_MODEL || 'gemini-3.5-flash-lite,gemini-3.8-flash,gemini-3.6-flash').split(',').map((m) => m.trim()).filter(Boolean)
 const KEY = process.env.LLM_API_KEY
 const MAX_TURNS = 20 // mensagens por conversa
 const MAX_CHARS = 1500 // por mensagem do visitante

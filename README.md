@@ -29,7 +29,7 @@ Chat no canto da tela que responde sobre os projetos e a experiência do Gustavo
 Configuração no Netlify (Site configuration > Environment variables):
 
 - `LLM_API_KEY` (obrigatória): chave gratuita do Google AI Studio (aistudio.google.com > Get API key). Não ative faturamento no projeto do Google, assim nunca há cobrança.
-- `LLM_MODEL` (opcional): lista de modelos separados por vírgula, tentados em ordem. Padrão `gemini-3.5-flash,gemini-3.5-flash-lite,gemini-flash-lite-latest`
+- `LLM_MODEL` (opcional): lista de modelos separados por vírgula, tentados em ordem. Padrão `gemini-3.5-flash-lite,gemini-3.8-flash,gemini-3.6-flash` (o Lite tem 500 respostas grátis por dia; os Flash, 20)
 - `LLM_BASE_URL` (opcional): qualquer API compatível com OpenAI, ex.: `https://api.groq.com/openai/v1`
 - `ALLOWED_ORIGINS` (opcional, padrão `https://finl1n.github.io` e localhost; `*.netlify.app` é sempre aceito)
 
