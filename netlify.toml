@@ -1,0 +1,13 @@
+# Netlify: hospeda a função do assistente de IA (netlify/functions/chat.mts) e uma prévia do site.
+# A chave fica em Site configuration > Environment variables > ANTHROPIC_API_KEY (nunca no código).
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # No Netlify o site e a função ficam no mesmo endereço.
+  VITE_CHAT_API_URL = "/api/chat"
+
+[functions]
+  node_bundler = "esbuild"

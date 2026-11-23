@@ -27,3 +27,4 @@ dist-ssr
 histórico-claude.txt
 .interface-design/
 public/demos/
+.netlify/
